@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projeto | Portfólio</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html#inicio" aria-label="Voltar para o início">
+        <span class="brand-mark">P</span>
+        <span class="brand-text">Portfólio</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="index.html#perfil">Perfil</a>
+        <a href="index.html#projetos">Projetos</a>
+        <a href="index.html#freelances">Freelances</a>
+        <a href="index.html#contato">Contato</a>
+      </nav>
+    </header>
+
+    <main class="project-page">
+      <section class="section-shell project-detail" id="project-detail">
+        <a class="back-link" href="index.html#projetos">Voltar para projetos</a>
+
+        <div class="project-detail-heading">
+          <p class="eyebrow" id="project-type"></p>
+          <h1 id="project-title">Projeto</h1>
+          <p class="hero-copy" id="project-description"></p>
+        </div>
+
+        <div class="project-gallery" id="project-gallery" aria-label="Imagens do projeto"></div>
+
+        <div class="project-detail-grid">
+          <article class="content-block project-story">
+            <h2>Sobre o projeto</h2>
+            <p id="project-long-description"></p>
+          </article>
+
+          <aside class="content-block">
+            <h2>Tecnologias</h2>
+            <div class="tag-list" id="project-stack"></div>
+            <div class="project-links" id="project-links"></div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span id="footer-name">Portfólio</span>
+    </footer>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/project.js"></script>
+  </body>
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfólio | Desenvolvedor</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Ir para o início">
+        <span class="brand-mark">P</span>
+        <span class="brand-text">Portfólio</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="#perfil">Perfil</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#freelances">Freelances</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </header>
+
+    <main id="inicio">
+      <section class="hero section-shell" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <p class="eyebrow" id="profile-role">Desenvolvedor</p>
+          <h1 id="hero-title">Portfólio profissional para seus projetos.</h1>
+          <p class="hero-copy" id="profile-summary">
+            Uma apresentação objetiva dos trabalhos, habilidades e resultados
+            que você quer mostrar.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projetos">Ver projetos</a>
+            <a class="button button-secondary" href="#contato">Entrar em contato</a>
+          </div>
+        </div>
+
+        <aside class="profile-panel" aria-label="Resumo do perfil">
+          <img
+            class="profile-photo"
+            id="profile-photo"
+            src="assets/img/profile-placeholder.svg"
+            alt="Foto profissional do perfil"
+          />
+          <div>
+            <p class="profile-name" id="profile-name"></p>
+            <p class="profile-location" id="profile-location"></p>
+          </div>
+          <dl class="profile-stats" id="profile-stats"></dl>
+        </aside>
+      </section>
+
+      <section class="section-shell profile-section" id="perfil" aria-labelledby="perfil-title">
+        <div class="section-heading">
+          <p class="eyebrow">Perfil</p>
+          <h2 id="perfil-title">Quem sou e como trabalho</h2>
+        </div>
+
+        <div class="profile-grid">
+          <article class="content-block">
+            <h3>Sobre</h3>
+            <p id="about-text"></p>
+          </article>
+
+          <article class="content-block">
+            <h3>Tecnologias</h3>
+            <div class="tag-list" id="tech-list"></div>
+          </article>
+
+          <article class="content-block">
+            <h3>Diferenciais</h3>
+            <ul class="check-list" id="strengths-list"></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-shell" id="projetos" aria-labelledby="projetos-title">
+        <div class="section-heading split-heading">
+          <div>
+            <p class="eyebrow">Projetos</p>
+            <h2 id="projetos-title">Projetos em destaque</h2>
+          </div>
+          <p>
+            Trabalhos autorais ou acadêmicos, com foco em aprendizagem e desenvolvimento profissional.
+          </p>
+        </div>
+
+        <div class="card-grid" id="projects-grid"></div>
+      </section>
+
+      <section class="section-shell" id="freelances" aria-labelledby="freelances-title">
+        <div class="section-heading split-heading">
+          <div>
+            <p class="eyebrow">Freelances</p>
+            <h2 id="freelances-title">Serviços e entregas</h2>
+          </div>
+          <p>
+            Um resumo do meu trabalho.
+          </p>
+        </div>
+
+        <div class="service-grid" id="freelance-grid"></div>
+      </section>
+
+      <section class="section-shell experience-section" id="experiencia" aria-labelledby="experiencia-title">
+        <div class="section-heading">
+          <p class="eyebrow">Experiência</p>
+          <h2 id="experiencia-title">Trajetória profissional</h2>
+        </div>
+
+        <div class="timeline" id="timeline-list"></div>
+      </section>
+
+      <section class="contact-band" id="contato" aria-labelledby="contato-title">
+        <div class="section-shell contact-content">
+          <div>
+            <p class="eyebrow">Contato</p>
+            <h2 id="contato-title">Vamos criar uma conexão!</h2>
+          </div>
+          <div class="contact-actions" id="contact-links"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span id="footer-name">Portfólio</span>
+    </footer>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
