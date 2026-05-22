@@ -87,7 +87,7 @@ const portfolioData = {
         "assets/img/project-3/projeto-3-3.png",
       ],
       links: [
-        { label: "Ver repositório", url: "https://github.com/Adorno7117" },
+        { label: "Ver repositório", url: "https://github.com/Sohra01/PI_III_Grupo2Turma4" },
       ],
     },
   ],
