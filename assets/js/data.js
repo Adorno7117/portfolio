@@ -90,6 +90,24 @@ const portfolioData = {
         { label: "Ver repositório", url: "https://github.com/Sohra01/PI_III_Grupo2Turma4" },
       ],
     },
+      {
+      slug: "watchlist-acoes",
+      title: "Watchlist de ações em tempo real",
+      type: "Projeto Autoral",
+      description:
+        "Aplicação web para visualização de ações com preço atual, variação, baixa e alta.",
+      longDescription:
+        "Aplicacao React para acompanhar uma watchlist de ativos em tempo real usando uma camada de integracao isolada para provedores de dados de mercado. Possui uma visão geral do dia, onde se pode adicionar as ações de interesse, visualizar seu histórico em até 3 anos, e ter uma visualizaão de tendência de acordo com o tempo selecionado.",
+      stack: ["React", "TypeScript", "Finnhub REST"],
+      images: [
+        "assets/img/project-4/projeto-4-1.png",
+        "assets/img/project-4/projeto-4-2.png",
+        "assets/img/project-4/projeto-4-3.png",
+      ],
+      links: [
+        { label: "Ver repositório", url: "https://github.com/Adorno7117/watchlist-de-acoes"},
+      ],
+    },
   ],
   freelances: [
     {
