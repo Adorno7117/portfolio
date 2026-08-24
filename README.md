@@ -1,6 +1,6 @@
 # Portfólio Profissional
 
-Landing page estática para apresentar perfil, tecnologias, projetos, freelances, experiência e contato.
+Landing page para apresentar perfil, tecnologias, projetos, freelances, experiência e contato.
 
 ## Estrutura
 

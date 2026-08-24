@@ -10,7 +10,6 @@ const portfolioData = {
       "Sou estudante de Engenharia de Software na PUC Campinas, com formação técnica em Desenvolvimento de Sistemas e Informática para Internet. Tenho experiência no desenvolvimento de aplicações web, dashboards, sistemas de autenticação, automações e projetos voltados à experiência do usuário. Gosto de trabalhar na resolução de problemas que envolvam organização de dados, automação de processos e melhoria da experiência do usuário. Busco sempre desenvolver soluções funcionais, intuitivas e com boa estrutura técnica, valorizando tanto a parte visual quanto a performance e a usabilidade do sistema.",
 
     stats: [
-      { label: "Projetos", value: "8+" },
       { label: "Stacks", value: "6" },
       { label: "Foco", value: "Dados" },
     ],
