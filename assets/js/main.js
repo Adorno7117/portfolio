@@ -69,29 +69,6 @@ const renderProjects = ({ projects }) => {
   );
 };
 
-const renderFreelances = ({ freelances }) => {
-  getElement("#freelance-grid").replaceChildren(
-    ...freelances.map((service) => {
-      const card = createElement(
-        service.url ? "a" : "article",
-        service.url ? "service-card service-card-link" : "service-card",
-      );
-      const title = createElement("h3", "", service.title);
-      const description = createElement("p", "", service.description);
-      const detail = createElement("span", "service-price", service.detail);
-
-      if (service.url) {
-        card.href = service.url;
-        card.target = "_blank";
-        card.rel = "noreferrer";
-        card.setAttribute("aria-label", `Acessar trabalho: ${service.title}`);
-      }
-
-      card.append(title, description, detail);
-      return card;
-    }),
-  );
-};
 
 const renderTimeline = ({ timeline }) => {
   getElement("#timeline-list").replaceChildren(
@@ -129,6 +106,5 @@ const renderContacts = ({ contacts }) => {
 
 renderProfile(portfolioData);
 renderProjects(portfolioData);
-renderFreelances(portfolioData);
 renderTimeline(portfolioData);
 renderContacts(portfolioData);
