@@ -106,15 +106,6 @@ const portfolioData = {
       ],
     },
   ],
-  freelances: [
-    {
-      title: "Site para Jessica Bordignon",
-      description:
-        "Criação de uma landing page profissional e divulgação de parcerias.",
-      detail: "Ideal para presença digital",
-      url: "https://jbesteticaavancada.com.br",
-    },
-  ],
   timeline: [
     {
       period: "2025 - Atualmente",
