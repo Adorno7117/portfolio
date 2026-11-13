@@ -1,61 +1,12 @@
-const getElement = (selector) => document.querySelector(selector);
-
-const createElement = (tag, className, text) => {
-  const element = document.createElement(tag);
-
-  if (className) {
-    element.className = className;
-  }
-
-  if (text) {
-    element.textContent = text;
-  }
-
-  return element;
-};
-
-const setImageOrientation = (image, container) => {
-  const applyOrientation = () => {
-    const { naturalWidth, naturalHeight } = image;
-
-    if (!naturalWidth || !naturalHeight) {
-      return;
-    }
-
-    container.classList.remove("is-landscape", "is-portrait", "is-square");
-
-    if (naturalWidth > naturalHeight * 1.12) {
-      container.classList.add("is-landscape");
-      return;
-    }
-
-    if (naturalHeight > naturalWidth * 1.12) {
-      container.classList.add("is-portrait");
-      return;
-    }
-
-    container.classList.add("is-square");
-  };
-
-  if (image.complete) {
-    applyOrientation();
-  } else {
-    image.addEventListener("load", applyOrientation, { once: true });
-  }
-};
-
-const getProjectSlug = () => {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("slug");
-};
+const getProjectSlug = () => new URLSearchParams(window.location.search).get("slug");
 
 const renderProjectCarousel = (project) => {
   const carousel = createElement("section", "project-carousel");
   const stage = createElement("div", "carousel-stage");
   const track = createElement("div", "carousel-track");
   const controls = createElement("div", "carousel-controls");
-  const previousButton = createElement("button", "carousel-button", "<");
-  const nextButton = createElement("button", "carousel-button", ">");
+  const previousButton = createElement("button", "carousel-button");
+  const nextButton = createElement("button", "carousel-button");
   const footer = createElement("div", "carousel-footer");
   const caption = createElement("p", "carousel-caption");
   const dots = createElement("div", "carousel-dots");
@@ -68,18 +19,11 @@ const renderProjectCarousel = (project) => {
     img.src = image;
     img.alt = `${project.title} - imagem ${index + 1}`;
     img.loading = index === 0 ? "eager" : "lazy";
-    setImageOrientation(img, slide);
+    img.decoding = "async";
+    img.draggable = false;
     slide.setAttribute("aria-label", `Imagem ${index + 1} de ${project.images.length}`);
     slide.append(img);
     return slide;
-  });
-
-  const dotButtons = project.images.map((_, index) => {
-    const button = createElement("button", "carousel-dot");
-    button.type = "button";
-    button.setAttribute("aria-label", `Ver imagem ${index + 1}`);
-    button.addEventListener("click", () => showSlide(index));
-    return button;
   });
 
   const showSlide = (index) => {
@@ -87,7 +31,6 @@ const renderProjectCarousel = (project) => {
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
 
     slides.forEach((slide, slideIndex) => {
-      slide.classList.toggle("is-active", slideIndex === currentIndex);
       slide.setAttribute("aria-hidden", slideIndex === currentIndex ? "false" : "true");
     });
 
@@ -99,10 +42,20 @@ const renderProjectCarousel = (project) => {
     caption.textContent = `Imagem ${currentIndex + 1} de ${slides.length}`;
   };
 
+  const dotButtons = project.images.map((_, index) => {
+    const button = createElement("button", "carousel-dot");
+    button.type = "button";
+    button.setAttribute("aria-label", `Ver imagem ${index + 1}`);
+    button.addEventListener("click", () => showSlide(index));
+    return button;
+  });
+
   previousButton.type = "button";
   nextButton.type = "button";
+  previousButton.append(createIcon("chevronLeft"));
+  nextButton.append(createIcon("chevronRight"));
   previousButton.setAttribute("aria-label", "Imagem anterior");
-  nextButton.setAttribute("aria-label", "Proxima imagem");
+  nextButton.setAttribute("aria-label", "Próxima imagem");
   previousButton.addEventListener("click", () => showSlide(currentIndex - 1));
   nextButton.addEventListener("click", () => showSlide(currentIndex + 1));
 
@@ -120,11 +73,37 @@ const renderProjectCarousel = (project) => {
     }
   });
 
+  let touchStartX = null;
+  stage.addEventListener(
+    "touchstart",
+    (event) => {
+      touchStartX = event.touches[0].clientX;
+    },
+    { passive: true },
+  );
+  stage.addEventListener("touchend", (event) => {
+    if (touchStartX === null) {
+      return;
+    }
+
+    const deltaX = event.changedTouches[0].clientX - touchStartX;
+    touchStartX = null;
+
+    if (Math.abs(deltaX) > 40) {
+      showSlide(currentIndex + (deltaX < 0 ? 1 : -1));
+    }
+  });
+
   track.append(...slides);
-  controls.append(previousButton, nextButton);
-  dots.append(...dotButtons);
+  stage.append(track);
+
+  if (slides.length > 1) {
+    controls.append(previousButton, nextButton);
+    stage.append(controls);
+    dots.append(...dotButtons);
+  }
+
   footer.append(caption, dots);
-  stage.append(track, controls);
   carousel.append(stage, footer);
   showSlide(0);
 
@@ -132,19 +111,24 @@ const renderProjectCarousel = (project) => {
 };
 
 const renderProjectNotFound = () => {
-  getElement("#project-detail").replaceChildren(
+  const back = createElement("a", "button button-primary", "Voltar para a página inicial");
+  back.href = "index.html#projetos";
+
+  const wrapper = createElement("div", "not-found");
+  wrapper.append(
     createElement("h1", "", "Projeto não encontrado"),
-    createElement(
-      "p",
-      "hero-copy",
-      "Volte para a página inicial e escolha um projeto disponível.",
-    ),
+    createElement("p", "hero-copy", "Volte para a página inicial e escolha um projeto disponível."),
   );
+
+  const actions = createElement("div", "hero-actions");
+  actions.append(back);
+  wrapper.append(actions);
+
+  getElement("#project-detail").replaceChildren(wrapper);
 };
 
 const renderProject = (project) => {
   document.title = `${project.title} | Portfólio`;
-  getElement("#footer-name").textContent = portfolioData.profile.name;
   getElement("#project-type").textContent = project.type;
   getElement("#project-title").textContent = project.title;
   getElement("#project-description").textContent = project.description;
@@ -158,19 +142,24 @@ const renderProject = (project) => {
 
   getElement("#project-links").replaceChildren(
     ...project.links.map((item) => {
-      const link = createElement("a", "button button-secondary", item.label);
+      const link = createElement("a", "button button-primary", item.label);
       link.href = item.url;
       link.target = "_blank";
-      link.rel = "noreferrer";
+      link.rel = "noopener noreferrer";
+      link.append(createIcon("external"));
       return link;
     }),
   );
 };
 
-const project = portfolioData.projects.find((item) => item.slug === getProjectSlug());
+getElement("#footer-name").textContent = portfolioData.profile.name;
 
-if (project) {
-  renderProject(project);
+const currentProject = portfolioData.projects.find((item) => item.slug === getProjectSlug());
+
+if (currentProject) {
+  renderProject(currentProject);
 } else {
   renderProjectNotFound();
 }
+
+initUI();

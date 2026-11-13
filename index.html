@@ -3,13 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfólio | Desenvolvedor</title>
-    <link rel="stylesheet" href="assets/css/styles.css" />
+    <title>Portfólio | Gabriel Adorno Simoso</title>
+    <meta
+      name="description"
+      content="Portfólio de Gabriel Adorno Simoso, desenvolvedor Front-end e Back-end. Projetos, tecnologias e trajetória profissional."
+    />
+    <meta name="theme-color" content="#0a1020" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Portfólio | Gabriel Adorno Simoso" />
+    <meta property="og:description" content="Desenvolvedor Front-end e Back-end. Conheça meus projetos e minha trajetória." />
+    <meta property="og:image" content="assets/img/image-perfil.webp" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235eb8ff'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='800' font-size='17' text-anchor='middle' fill='%2306101f'%3EP%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    />
+    <link rel="preload" as="image" href="assets/img/image-perfil.webp" fetchpriority="high" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=2" />
+    <script>document.documentElement.classList.add("js");</script>
   </head>
   <body>
+    <a class="skip-link" href="#inicio">Pular para o conteúdo</a>
+
     <header class="site-header">
       <a class="brand" href="#inicio" aria-label="Ir para o início">
-        <span class="brand-mark">P</span>
+        <span class="brand-mark" aria-hidden="true">P</span>
         <span class="brand-text">Portfólio</span>
       </a>
 
@@ -23,61 +46,77 @@
 
     <main id="inicio">
       <section class="hero section-shell" aria-labelledby="hero-title">
-        <div class="hero-content">
+        <div class="hero-content reveal">
           <p class="eyebrow" id="profile-role">Desenvolvedor</p>
-          <h1 id="hero-title">Portfólio profissional para seus projetos.</h1>
-          <p class="hero-copy" id="profile-summary">
-            Uma apresentação objetiva dos trabalhos, habilidades e resultados
-            que você quer mostrar.
-          </p>
+          <h1 id="hero-title" class="gradient-text">Portfólio profissional.</h1>
+          <p class="hero-copy" id="profile-summary"></p>
 
           <div class="hero-actions">
-            <a class="button button-primary" href="#projetos">Ver projetos</a>
+            <a class="button button-primary" href="#projetos">
+              Ver projetos
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
             <a class="button button-secondary" href="#contato">Entrar em contato</a>
           </div>
         </div>
 
-        <aside class="profile-panel" aria-label="Resumo do perfil">
+        <aside class="profile-panel reveal" style="--delay: 120ms" aria-label="Resumo do perfil">
           <img
             class="profile-photo"
             id="profile-photo"
-            src="assets/img/profile-placeholder.svg"
-            alt="Foto profissional do perfil"
+            src="assets/img/image-perfil.webp"
+            width="640"
+            height="814"
+            fetchpriority="high"
+            decoding="async"
+            alt="Foto de Gabriel Adorno Simoso"
           />
-          <div>
+          <div class="profile-info">
             <p class="profile-name" id="profile-name"></p>
-            <p class="profile-location" id="profile-location"></p>
+            <p class="profile-location">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+              <span id="profile-location"></span>
+            </p>
           </div>
           <dl class="profile-stats" id="profile-stats"></dl>
         </aside>
       </section>
 
-      <section class="section-shell profile-section" id="perfil" aria-labelledby="perfil-title">
-        <div class="section-heading">
+      <section class="section-shell section" id="perfil" aria-labelledby="perfil-title">
+        <div class="section-heading reveal">
           <p class="eyebrow">Perfil</p>
           <h2 id="perfil-title">Quem sou e como trabalho</h2>
         </div>
 
         <div class="profile-grid">
-          <article class="content-block">
-            <h3>Sobre</h3>
+          <article class="content-block reveal">
+            <h3>
+              <span class="block-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+              Sobre
+            </h3>
             <p id="about-text"></p>
           </article>
 
-          <article class="content-block">
-            <h3>Tecnologias</h3>
+          <article class="content-block reveal" style="--delay: 80ms">
+            <h3>
+              <span class="block-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></span>
+              Tecnologias
+            </h3>
             <div class="tag-list" id="tech-list"></div>
           </article>
 
-          <article class="content-block">
-            <h3>Diferenciais</h3>
+          <article class="content-block reveal" style="--delay: 160ms">
+            <h3>
+              <span class="block-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.8 1-6.1-4.4-4.3 6.1-.9z"/></svg></span>
+              Diferenciais
+            </h3>
             <ul class="check-list" id="strengths-list"></ul>
           </article>
         </div>
       </section>
 
-      <section class="section-shell" id="projetos" aria-labelledby="projetos-title">
-        <div class="section-heading split-heading">
+      <section class="section-shell section" id="projetos" aria-labelledby="projetos-title">
+        <div class="section-heading split-heading reveal">
           <div>
             <p class="eyebrow">Projetos</p>
             <h2 id="projetos-title">Projetos em destaque</h2>
@@ -90,8 +129,8 @@
         <div class="card-grid" id="projects-grid"></div>
       </section>
 
-      <section class="section-shell experience-section" id="experiencia" aria-labelledby="experiencia-title">
-        <div class="section-heading">
+      <section class="section-shell section" id="experiencia" aria-labelledby="experiencia-title">
+        <div class="section-heading reveal">
           <p class="eyebrow">Experiência</p>
           <h2 id="experiencia-title">Trajetória profissional</h2>
         </div>
@@ -100,7 +139,7 @@
       </section>
 
       <section class="contact-band" id="contato" aria-labelledby="contato-title">
-        <div class="section-shell contact-content">
+        <div class="section-shell contact-content reveal">
           <div>
             <p class="eyebrow">Contato</p>
             <h2 id="contato-title">Vamos criar uma conexão!</h2>
@@ -111,10 +150,12 @@
     </main>
 
     <footer class="site-footer">
-      <span id="footer-name">Portfólio</span>
+      <strong id="footer-name">Portfólio</strong>
+      <span>© <span id="footer-year"></span></span>
     </footer>
 
-    <script src="assets/js/data.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/data.js?v=2" defer></script>
+    <script src="assets/js/ui.js?v=2" defer></script>
+    <script src="assets/js/main.js?v=2" defer></script>
   </body>
 </html>

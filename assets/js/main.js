@@ -1,35 +1,23 @@
-const getElement = (selector) => document.querySelector(selector);
-
-const createElement = (tag, className, text) => {
-  const element = document.createElement(tag);
-
-  if (className) {
-    element.className = className;
-  }
-
-  if (text) {
-    element.textContent = text;
-  }
-
+const withReveal = (element, index = 0) => {
+  element.classList.add("reveal");
+  element.style.setProperty("--delay", `${Math.min(index, 4) * 80}ms`);
   return element;
 };
 
-const renderTags = (items, container) => {
-  container.replaceChildren(
-    ...items.map((item) => createElement("span", "tag", item)),
-  );
-};
-
 const renderProfile = ({ profile }) => {
-  document.title = `Portfolio | ${profile.name}`;
+  document.title = `Portfólio | ${profile.name}`;
   getElement("#profile-role").textContent = profile.role;
   getElement("#hero-title").textContent = profile.headline;
   getElement("#profile-summary").textContent = profile.summary;
   getElement("#profile-name").textContent = profile.name;
   getElement("#profile-location").textContent = profile.location;
-  getElement("#profile-photo").src = profile.photo;
   getElement("#about-text").textContent = profile.about;
   getElement("#footer-name").textContent = profile.name;
+
+  const photo = getElement("#profile-photo");
+  if (!photo.getAttribute("src").endsWith(profile.photo)) {
+    photo.src = profile.photo;
+  }
 
   getElement("#profile-stats").replaceChildren(
     ...profile.stats.map((stat) => {
@@ -39,7 +27,9 @@ const renderProfile = ({ profile }) => {
     }),
   );
 
-  renderTags(profile.technologies, getElement("#tech-list"));
+  getElement("#tech-list").replaceChildren(
+    ...profile.technologies.map((item) => createElement("span", "tag", item)),
+  );
 
   getElement("#strengths-list").replaceChildren(
     ...profile.strengths.map((strength) => createElement("li", "", strength)),
@@ -48,14 +38,28 @@ const renderProfile = ({ profile }) => {
 
 const renderProjects = ({ projects }) => {
   getElement("#projects-grid").replaceChildren(
-    ...projects.map((project) => {
-      const card = createElement("a", "project-card project-card-link");
-      const image = createElement("div", "project-image", project.type);
+    ...projects.map((project, index) => {
+      const card = createElement("a", "project-card");
+      const thumb = createElement("div", "project-thumb");
+      const type = createElement("span", "project-type", project.type);
+      const body = createElement("div", "project-body");
       const title = createElement("h3", "", project.title);
       const description = createElement("p", "", project.description);
       const meta = createElement("div", "project-meta");
       const linkLabel = createElement("span", "text-link", "Ver detalhes do projeto");
 
+      if (project.images.length) {
+        const image = createElement("img");
+        image.src = project.images[0];
+        image.alt = "";
+        image.loading = "lazy";
+        image.decoding = "async";
+        markPortrait(image, thumb);
+        thumb.append(image);
+      }
+
+      thumb.append(type);
+      linkLabel.append(createIcon("arrowRight"));
       meta.replaceChildren(
         ...project.stack.map((item) => createElement("span", "meta-pill", item)),
       );
@@ -63,23 +67,23 @@ const renderProjects = ({ projects }) => {
       card.href = `project.html?slug=${encodeURIComponent(project.slug)}`;
       card.setAttribute("aria-label", `Ver detalhes do projeto: ${project.title}`);
 
-      card.append(image, title, description, meta, linkLabel);
-      return card;
+      body.append(title, description, meta, linkLabel);
+      card.append(thumb, body);
+      return withReveal(card, index % 2);
     }),
   );
 };
 
-
 const renderTimeline = ({ timeline }) => {
   getElement("#timeline-list").replaceChildren(
-    ...timeline.map((item) => {
+    ...timeline.map((item, index) => {
       const card = createElement("article", "timeline-card");
       const period = createElement("span", "timeline-period", item.period);
       const content = createElement("div");
 
       content.append(createElement("h3", "", item.title), createElement("p", "", item.description));
       card.append(period, content);
-      return card;
+      return withReveal(card, index);
     }),
   );
 };
@@ -96,7 +100,8 @@ const renderContacts = ({ contacts }) => {
 
       if (contact.url.startsWith("http")) {
         link.target = "_blank";
-        link.rel = "noreferrer";
+        link.rel = "noopener noreferrer";
+        link.append(createIcon("external"));
       }
 
       return link;
@@ -108,3 +113,4 @@ renderProfile(portfolioData);
 renderProjects(portfolioData);
 renderTimeline(portfolioData);
 renderContacts(portfolioData);
+initUI();
